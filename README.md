@@ -25,6 +25,27 @@ If we use too much **focus power** without paying the cost, what will we become 
 You can download the latest dmg file from [here](https://github.com/xiaogdgenuine/Doll/releases/latest)
 Minimum system requirement: **_macOS 11.0_** (Big Sur)
 
+# Build from source
+Doll is a native macOS Swift app built with Xcode. To build it from Terminal:
+
+```bash
+cd /Users/shining/Downloads/Doll
+
+xcodebuild \
+  -project Doll.xcodeproj \
+  -scheme Doll \
+  -configuration Debug \
+  -sdk macosx \
+  -derivedDataPath /tmp/DollDerivedData \
+  CODE_SIGNING_ALLOWED=NO \
+  build
+```
+
+The built app is written to `/tmp/DollDerivedData/Build/Products/Debug/Doll.app`.
+The first build downloads the pinned Swift package dependencies from GitHub. For a distributable build, configure a valid Apple signing identity and remove `CODE_SIGNING_ALLOWED=NO`.
+
+You can also open `Doll.xcodeproj` in Xcode and run the shared `Doll` scheme. The `MonitorCore` package compiles with `swift build`; its existing tests are not registered as a Swift package test target.
+
 # How to use?
 It's simple, click on "+" button at the left bottom corner, search and select the app you want to monitor:
 
